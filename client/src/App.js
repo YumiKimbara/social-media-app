@@ -14,6 +14,9 @@ const App = () => {
   const classes = useStyles();
 
   // getPosts actionをdispatchする。
+  // 非同期処理を含むアクションクリエーターをReduxストアにディスパッチする際には、Redux-Thunkのdispatchを使用する必要がある。
+  // 同期的な処理を含むアクションをディスパッチする場合には、Reduxのdispatchを使用することができる。
+  // ここでは同期的な処理となるため、reduxのdispatchを使用している。
   useEffect(() => {
     dispatch(getPosts());
   }, [currentId, dispatch]);
