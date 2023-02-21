@@ -8,11 +8,6 @@ import postRoutes from "./routes/posts.js";
 
 const app = express();
 
-// app.useでミドルウェア関数を登録
-// postRoutesのroutesは全てlocalhose:3333/postsになるように設定する。
-// postsへのリクエストがpostRoutesで定義されたルートにルーティングされるようになります。
-app.use("/posts", postRoutes);
-
 // このミドルウェア関数は、POST、PUT、PATCHなどのHTTPリクエストでJSONデータを解析するために使用されます。
 // リクエストボディからJSONを解析して、JavaScriptオブジェクトに変換します。
 // limitは受け入れ可能なリクエストボディの最大サイズを30MBに設定
@@ -29,6 +24,12 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 // CORSは、Webブラウザーに、異なるドメインからのリクエストを許可するための仕組みを提供します。
 // 引数がないため、すべてのドメインからのリクエストを受け入れるように設定されています。
 app.use(cors());
+
+// app.useでミドルウェア関数を登録
+// postRoutesのroutesは全てlocalhose:3333/postsになるように設定する。
+// postsへのリクエストがpostRoutesで定義されたルートにルーティングされるようになります。
+// routesの設定はcors文の後に記載しないとエラーになるので注意
+app.use("/posts", postRoutes);
 
 // リアルなアップではこの情報はcredential
 const CONNECTION_URL =
