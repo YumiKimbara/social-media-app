@@ -7,10 +7,7 @@ import useStyles from "./styles";
 
 const Posts = ({ setCurrentId }) => {
   // state.postsはreducers folderのcombineReducersから来ている
-  const posts = useSelector((state) => {
-    console.log("state", state);
-    return state.posts;
-  });
+  const posts = useSelector((state) => state.posts);
   const classes = useStyles();
 
   return !posts.length ? (

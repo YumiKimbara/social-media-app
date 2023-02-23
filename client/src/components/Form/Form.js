@@ -48,8 +48,6 @@ const Form = ({ currentId, setCurrentId }) => {
     }
   };
 
-  console.log("post", post);
-
   return (
     <Paper className={classes.paper}>
       <form

@@ -8,8 +8,10 @@ export const fetchPosts = () => axios.get(url);
 export const createPost = (newPost) => axios.post(url, newPost);
 
 // どの投稿をupdateしたいか判断するため、idも渡す。
-export const updatePost = (id, updatedPost) =>
+export const updatePost = (id, updatedPost) => {
+  console.log("id, updatedPost", id, updatedPost);
   axios.patch(`${url}/${id}`, updatedPost);
+};
 
 export const deletePost = (id) => {
   axios.delete(`${url}/${id}`);
