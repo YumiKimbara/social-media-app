@@ -8,12 +8,16 @@ import thunk from "redux-thunk";
 import reducers from "./reducers";
 
 import App from "./App";
+import "./index.css";
 
 // configureStoreを使用して、Reduxストアを構成する。
 // 第一引数にreducerをとる。
 // composeは複数のミドルウェアを適用することができる。
 // applyMiddlewareはストアにミドルウェアを適用するための関数(ここではthunkミドルウェア)
-const store = configureStore(reducers, compose(applyMiddleware(thunk)));
+const store = configureStore(
+  { reducer: reducers },
+  compose(applyMiddleware(thunk))
+);
 
 ReactDOM.render(
   // ProviderはReduxストアをReactアプリケーション全体で利用可能にする。

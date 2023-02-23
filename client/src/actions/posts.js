@@ -1,3 +1,4 @@
+import { FETCH_ALL, CREATE, UPDATE, DELETE } from "../constants/actionTypes";
 import * as api from "../api";
 
 // actionを返す関数を作成する。（Action Creatorの作成）
@@ -14,8 +15,46 @@ export const getPosts = () => async (dispatch) => {
     // redux thunkの書き方。dispatch内がactionの内容
     // dispatch関数を使って取得したデータをReduxストアに送信する。
     // これによりFETCH_ALL アクションがディスパッチされ、ペイロードとして取得したデータが渡される。
-    dispatch({ type: "FETCH_ALL", payload: data });
+    dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
     console.log(error.message);
+  }
+};
+
+export const createPost = (post) => async (dispatch) => {
+  try {
+    const { data } = await api.createPost(post);
+    dispatch({ type: CREATE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updatePost = (id, post) => async (dispatch) => {
+  try {
+    const { data } = await api.updatePost(id, post);
+
+    dispatch({ type: UPDATE, payloda: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deletePost = (id) => async (dispatch) => {
+  try {
+    await api.deletePost(id);
+
+    dispatch({ type: DELETE, payload: id });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const likePost = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.likePost(id);
+    dispatch({ type: UPDATE, payload: data });
+  } catch (error) {
+    console.log(error);
   }
 };

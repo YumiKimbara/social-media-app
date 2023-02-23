@@ -3,10 +3,12 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
+import dotenv from "dotenv";
 
 import postRoutes from "./routes/posts.js";
 
 const app = express();
+dotenv.config();
 
 // このミドルウェア関数は、POST、PUT、PATCHなどのHTTPリクエストでJSONデータを解析するために使用されます。
 // リクエストボディからJSONを解析して、JavaScriptオブジェクトに変換します。
@@ -32,15 +34,15 @@ app.use(cors());
 app.use("/posts", postRoutes);
 
 // リアルなアップではこの情報はcredential
-const CONNECTION_URL =
-  "mongodb+srv://javascriptmastery:javascriptmastery123@cluster0.bhhad.mongodb.net/?retryWrites=true&w=majority";
+// const CONNECTION_URL =
+//   "mongodb+srv://javascriptmastery:javascriptmastery123@cluster0.bhhad.mongodb.net/?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 3333;
 
 // MongoDBへの接続する。
 // 第一引数には、接続先のURLを渡し、第二引数にはオプションを渡します。
 // MongooseのconnectメソッドはPromiseを返すので、その後の処理もthenの後に記載する。
 mongoose
-  .connect(CONNECTION_URL, {
+  .connect(process.env.CONNECTION_URL, {
     // MongooseがMongoDBのURLを解析するために使用するURLパーサーの設定
     useNewUrlParser: true,
     // MongooseはMongoDBの新しいトポロジー管理エンジンを使用して接続を試みます。これにより、複数のmongodプロセスを使用する場合でも、より安定した接続が確立されるようになります。
