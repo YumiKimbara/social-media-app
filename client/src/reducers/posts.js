@@ -1,6 +1,5 @@
 import { FETCH_ALL, CREATE, UPDATE, DELETE } from "../constants/actionTypes";
 
-// export const postsReducer = (posts = [], action) => {
 export default (posts = [], action) => {
   switch (action.type) {
     case FETCH_ALL:

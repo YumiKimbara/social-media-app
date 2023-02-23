@@ -10,7 +10,7 @@ export const getPosts = async (req, res) => {
     // データベースから投稿メッセージを検索。
     const postMessage = await PostMessage.find();
     // 200のステータスコードで PostMessage を含むJSONレスポンスを返す。
-    res.status(200).json(PostMessage);
+    res.status(200).json(postMessage);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
