@@ -9,10 +9,10 @@ import {
   Container,
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
-import { GoogleLogin } from "react-google-login";
+import { GoogleLogin } from "@react-oauth/google";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
-// import Icon from "./icon";
+import Icon from "./icon";
 // import { signin, signup } from "../../actions/auth";
 // import { AUTH } from "../../constants/actionTypes";
 import useStyles from "./styles";
@@ -59,7 +59,7 @@ const SignUp = () => {
     try {
       //   dispatch({ type: AUTH, data: { result, token } });
 
-      navigate.push("/");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -131,7 +131,6 @@ const SignUp = () => {
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
           <GoogleLogin
-            clientId="564033717568-bu2nr1l9h31bhk9bff4pqbenvvoju3oq.apps.googleusercontent.com"
             render={(renderProps) => (
               <Button
                 className={classes.googleButton}
@@ -139,17 +138,16 @@ const SignUp = () => {
                 fullWidth
                 onClick={renderProps.onClick}
                 disabled={renderProps.disabled}
-                // startIcon={<Icon />}
+                startIcon={<Icon />}
                 variant="contained"
               >
                 Google Sign In
               </Button>
             )}
             onSuccess={googleSuccess}
-            onFailure={googleError}
-            cookiePolicy="single_host_origin"
+            onError={googleError}
           />
-          <Grid container justify="flex-end">
+          <Grid container justifyContent="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
                 {isSignup

@@ -25,7 +25,7 @@ function Input({
         type={type}
         inputProps={
           name === "password" && {
-            endoAdornment: (
+            endoadornment: (
               <InputAdornment position="end">
                 <IconButton onClick={handleShowPassword}>
                   {type === "password" ? <Visibility /> : <VisibilityOff />}

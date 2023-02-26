@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { applyMiddleware, compose } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import reducers from "./reducers";
 
@@ -19,10 +20,12 @@ const store = configureStore(
   compose(applyMiddleware(thunk))
 );
 
+// ProviderはReduxストアをReactアプリケーション全体で利用可能にする。
 ReactDOM.render(
-  // ProviderはReduxストアをReactアプリケーション全体で利用可能にする。
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <GoogleOAuthProvider clientId="83618908195-n791vs5jgeqbalhvavmgqect4umnd6sq.apps.googleusercontent.com">
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </GoogleOAuthProvider>,
   document.getElementById("root")
 );
