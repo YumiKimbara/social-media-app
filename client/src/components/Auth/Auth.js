@@ -11,10 +11,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import jwt_decode from "jwt-decode";
 
 import Icon from "./icon";
 // import { signin, signup } from "../../actions/auth";
-// import { AUTH } from "../../constants/actionTypes";
+import { AUTH } from "../../constants/actionTypes";
 import useStyles from "./styles";
 import Input from "./Input";
 
@@ -53,11 +54,16 @@ const SignUp = () => {
   };
 
   const googleSuccess = async (res) => {
-    const result = res?.profileObj;
-    const token = res?.tokenId;
+    console.log("res", res);
+    const userObj = jwt_decode(res.credential);
+    console.log("userObj", userObj);
+    // ?.(optional chainingはerrorを投げる代わりにundefinedを返す。)
+    const result = userObj;
+    // const token = res?.tokenId;
 
     try {
       //   dispatch({ type: AUTH, data: { result, token } });
+      dispatch({ type: AUTH, data: { result } });
 
       navigate("/");
     } catch (error) {
