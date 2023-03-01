@@ -14,7 +14,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import jwt_decode from "jwt-decode";
 
 import Icon from "./icon";
-// import { signin, signup } from "../../actions/auth";
+import { signin, signup } from "../../actions/auth";
 import { AUTH } from "../../constants/actionTypes";
 import useStyles from "./styles";
 import Input from "./Input";
@@ -47,9 +47,9 @@ const SignUp = () => {
     e.preventDefault();
 
     if (isSignup) {
-      //   dispatch(signup(form, navigate));
+      dispatch(signup(form, navigate));
     } else {
-      //   dispatch(signin(form, navigate));
+      dispatch(signin(form, navigate));
     }
   };
 
