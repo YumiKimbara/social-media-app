@@ -6,6 +6,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/users.js";
 
 const app = express();
 dotenv.config();
@@ -32,6 +33,7 @@ app.use(cors());
 // postsへのリクエストがpostRoutesで定義されたルートにルーティングされるようになります。
 // routesの設定はcors文の後に記載しないとエラーになるので注意
 app.use("/posts", postRoutes);
+app.use("/user", userRoutes);
 
 // リアルなアップではこの情報はcredential
 // const CONNECTION_URL =
