@@ -75,6 +75,7 @@ const SignUp = () => {
     console.log("Google Sign In was unsuccessful. Try again later");
 
   const handleChange = (e) =>
+    // e.target.nameだけupdateする。
     setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
