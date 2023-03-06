@@ -2,7 +2,8 @@ import axios from "axios";
 
 const API = axios.create({ baseURL: "http://localhost:3333" });
 
-// 下記のAPIリクエスト前に記載する。
+// interceptorsはcatchやthen前にrequestやresponseを遮ることができる。
+// そのため下記のAPIリクエスト前に記載するように。
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
     req.headers.Authorization = `Bearer ${

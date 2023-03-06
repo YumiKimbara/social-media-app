@@ -21,7 +21,11 @@ export const createPost = async (req, res) => {
   const post = req.body;
 
   // PostMessage のモデルインスタンスを作成
-  const newPost = new PostMessage(post);
+  const newPost = new PostMessage({
+    ...post,
+    creator: req.userId,
+    createdAt: new Date().toISOString(),
+  });
 
   try {
     // データベースに新しい投稿メッセージを保存
