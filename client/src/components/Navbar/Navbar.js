@@ -28,8 +28,10 @@ const Navbar = () => {
     const token = user?.token;
 
     if (token) {
+      // tokeが存在するならdecodeする。
       const decodedToken = decode(token);
 
+      // 時間が経ちtokenがexpireしたらlogoutする。
       if (decodedToken.exp * 1000 < new Date().getTime()) logout();
     }
 

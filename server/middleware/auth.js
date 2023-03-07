@@ -7,7 +7,8 @@ import jwt from "jsonwebtoken";
 const auth = async (req, res, next) => {
   try {
     // user controllerのtokenを取得する。
-    const token = req.headers.Authorization.split(" ")[1];
+    // authorizationは小文字になる。
+    const token = req.headers.authorization.split(" ")[1];
 
     //500を超えるならgoogle authである。
     const isCustomAuth = token.length < 500;
