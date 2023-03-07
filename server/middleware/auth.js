@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+const secret = "test";
 
 // middlewareはcontrollerに似ているが、引数にnextをとる。
 // このmiddlewareはたとえばuserが何か投稿したいなどの場合に、まずこのmiddlewareを通し投稿する権利のあるユーザーかを判断する。
@@ -18,7 +19,7 @@ const auth = async (req, res, next) => {
     // user IDを取得する
     if (token && isCustomAuth) {
       // "test"はuser controllerの第二引数と同じ文字列を入れる。
-      decodedData = jwt.veryfy(token, "test");
+      decodedData = jwt.verify(token, secret);
 
       req.userId = decodedData?.id;
     } else {

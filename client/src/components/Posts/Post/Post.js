@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@material-ui/core/";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";

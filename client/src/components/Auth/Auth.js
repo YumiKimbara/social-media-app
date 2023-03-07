@@ -9,9 +9,8 @@ import {
   Container,
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "react-google-login";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import jwt_decode from "jwt-decode";
 
 import Icon from "./icon";
 import { signin, signup } from "../../actions/auth";
@@ -54,16 +53,12 @@ const SignUp = () => {
   };
 
   const googleSuccess = async (res) => {
-    console.log("res", res);
-    const userObj = jwt_decode(res.credential);
-    console.log("userObj", userObj);
     // ?.(optional chainingはerrorを投げる代わりにundefinedを返す。)
-    const result = userObj;
-    // const token = res?.tokenId;
+    const result = res?.profileObj;
+    const token = res?.tokenId;
 
     try {
-      //   dispatch({ type: AUTH, data: { result, token } });
-      dispatch({ type: AUTH, data: { result } });
+      dispatch({ type: AUTH, data: { result, token } });
 
       navigate("/");
     } catch (error) {
@@ -138,6 +133,7 @@ const SignUp = () => {
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
           <GoogleLogin
+            clientId="564033717568-bu2nr1l9h31bhk9bff4pqbenvvoju3oq.apps.googleusercontent.com"
             render={(renderProps) => (
               <Button
                 className={classes.googleButton}
@@ -152,7 +148,8 @@ const SignUp = () => {
               </Button>
             )}
             onSuccess={googleSuccess}
-            onError={googleError}
+            onFailure={googleError}
+            cookiePolicy="single_host_origin"
           />
           <Grid container justifyContent="flex-end">
             <Grid item>

@@ -30,7 +30,7 @@ export const deletePost = (id) => {
 };
 
 export const likePost = (id) => {
-  API.patch(`posts/${id}/likePost`);
+  API.patch(`/posts/${id}/likePost`);
 };
 
 export const signIn = (formData) => API.post("/user/signin", formData);
