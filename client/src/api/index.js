@@ -21,8 +21,7 @@ export const createPost = (newPost) => API.post("/posts", newPost);
 
 // どの投稿をupdateしたいか判断するため、idも渡す。
 export const updatePost = (id, updatedPost) => {
-  console.log("id, updatedPost", id, updatedPost);
-  API.patch(`$/posts/${id}`, updatedPost);
+  API.patch(`/posts/${id}`, updatedPost);
 };
 
 export const deletePost = (id) => {
